@@ -1,0 +1,15 @@
+version: "3.5"
+
+networks:
+  default:
+    name: ${APP_NETWORK}
+    driver: bridge
+
+services:
+  nginx-proxy:
+    build:
+      context: ./build/nginx-proxy-dev
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro

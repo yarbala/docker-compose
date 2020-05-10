@@ -7,6 +7,7 @@ networks:
 
 services:
   nginx-proxy:
+    restart: ${RESTART_POLICY}
     build:
       context: ./build/nginx-proxy-prod
     ports:
@@ -23,6 +24,7 @@ services:
       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
 
   nginx-proxy-le:
+    restart: ${RESTART_POLICY}
     image: jrcs/letsencrypt-nginx-proxy-companion
     depends_on:
       - nginx-proxy

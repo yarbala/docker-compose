@@ -1,0 +1,10 @@
+version: "3.5"
+
+services:
+  redis-emigraciya:
+    restart: unless-stopped
+    container_name: redis-server
+    build:
+      context: ./build/redis
+    volumes:
+      - "./data/redis:/data:delegated"

@@ -44,3 +44,7 @@ docker-compose up -d
 ```
 
 Refer to [docker-project](https://github.com/yarbala/docker-project) documentation to setup first project.
+
+## Tools
+
+Inside tools directory, located some containers, with mysql, redis, phpmyadmin

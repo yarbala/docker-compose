@@ -1,4 +1,4 @@
-FROM jwilder/nginx-proxy
+FROM nginxproxy/nginx-proxy:alpine
 
 RUN { \
       echo 'server_tokens off;'; \

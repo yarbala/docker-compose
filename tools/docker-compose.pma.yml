@@ -1,0 +1,22 @@
+version: "3.5"
+
+networks:
+  default:
+    name: ${APP_NETWORK}
+    external: true
+
+services:
+  mysql-pma:
+    container_name: mysql-pma
+    restart: unless-stopped
+    build:
+      context: ./build/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql-server
+      - PMA_USER=root
+      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - PMA_ABSOLUTE_URI=http://pma.armada.localhost/
+      - VIRTUAL_HOST=${PMA_SERVER_NAME}
+      - LETSENCRYPT_HOST=${PMA_SERVER_NAME}
+      - HTTPS_METHOD=noredirect

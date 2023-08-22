@@ -1,0 +1,12 @@
+version: "3.5"
+
+services:
+  mailhog-server:
+    restart: unless-stopped
+    container_name: mailhog-server
+    image: mailhog/mailhog
+    environment:
+      - VIRTUAL_HOST=${MAILHOG_SERVER_NAME}
+      - LETSENCRYPT_HOST=${MAILHOG_SERVER_NAME}
+      - VIRTUAL_PORT=8025
+      - HTTPS_METHOD=noredirect

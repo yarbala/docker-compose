@@ -14,9 +14,6 @@ services:
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=mysql-server
-      - PMA_USER=root
-      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - PMA_ABSOLUTE_URI=http://pma.armada.localhost/
       - VIRTUAL_HOST=${PMA_SERVER_NAME}
       - LETSENCRYPT_HOST=${PMA_SERVER_NAME}
       - HTTPS_METHOD=noredirect

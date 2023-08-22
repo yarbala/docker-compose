@@ -1,7 +1,7 @@
 version: "3.5"
 
 services:
-  redis-emigraciya:
+  redis-server:
     restart: unless-stopped
     container_name: redis-server
     build:

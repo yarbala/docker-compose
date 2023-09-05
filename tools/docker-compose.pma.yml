@@ -16,4 +16,4 @@ services:
       - PMA_HOST=mysql-server
       - VIRTUAL_HOST=${PMA_SERVER_NAME}
       - LETSENCRYPT_HOST=${PMA_SERVER_NAME}
-      - HTTPS_METHOD=noredirect
+      - HTTPS_METHOD=redirect

@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  mysql5-server:
+    platform: linux/x86_64
+    restart: unless-stopped
+    container_name: mysql5-server
+    build:
+      context: ./build/mysql
+      args:
+        - MYSQL_VERSION=5.7.36
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - TZ=${TZ}
+    volumes:
+      - "./data/mysql5:/var/lib/mysql:delegated"

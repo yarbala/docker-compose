@@ -1,4 +1,4 @@
-FROM nginxproxy/nginx-proxy:alpine
+FROM nginxproxy/nginx-proxy:1.5-alpine
 
 RUN { \
       echo 'server_tokens off;'; \

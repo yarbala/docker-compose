@@ -1,5 +1,3 @@
-version: "3.5"
-
 networks:
   default:
     name: ${APP_NETWORK}
@@ -7,6 +5,7 @@ networks:
 
 services:
   nginx-proxy:
+    container_name: nginx-proxy
     restart: ${RESTART_POLICY}
     build:
       context: ./build/nginx-proxy-staging
@@ -24,6 +23,7 @@ services:
       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
 
   nginx-proxy-le:
+    container_name: nginx-proxy-le
     restart: ${RESTART_POLICY}
     image: jrcs/letsencrypt-nginx-proxy-companion
     depends_on:

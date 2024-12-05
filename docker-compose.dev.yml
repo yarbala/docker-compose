@@ -1,4 +1,3 @@
-version: "3.5"
 
 networks:
   default:
@@ -8,6 +7,7 @@ networks:
 
 services:
   nginx-proxy:
+    container_name: nginx-proxy
     restart: ${RESTART_POLICY}
     build:
       context: ./build/nginx-proxy-dev

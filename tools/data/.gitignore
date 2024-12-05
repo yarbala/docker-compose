@@ -1,3 +1,5 @@
 mysql/*
 mysql5/*
 redis/*
+grafana/*
+loki/*

@@ -1,6 +1,3 @@
-FROM phpmyadmin/phpmyadmin:latest
+FROM phpmyadmin:5
 
-# Add volume for sessions to allow session persistence
-VOLUME /sessions
-
-EXPOSE 80
+EXPOSE 8080

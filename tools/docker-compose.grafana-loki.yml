@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  loki:
+    build:
+      context: ./build/loki
+    container_name: loki
+    ports:
+      - "3100:3100"
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - "./data/loki:/loki"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin              # Замените на своего пользователя
+      - GF_SECURITY_ADMIN_PASSWORD=admin          # Замените на сложный пароль
+      - VIRTUAL_HOST=${GRAFANA_SERVER_NAME}
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=${GRAFANA_SERVER_NAME}
+      - HTTPS_METHOD=redirect
+    ports:
+      - "3000:3000"
+    depends_on:
+      - loki
+    volumes:
+      - "./data/grafana:/var/lib/grafana"
+    restart: unless-stopped
+
+  promtail:
+    build:
+      context: ./build/promtail
+    container_name: promtail
+    environment:
+      - TZ=${TZ}
+    depends_on:
+      - loki
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Монтируем Docker сокет для сбора логов
+    restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: ${APP_NETWORK}

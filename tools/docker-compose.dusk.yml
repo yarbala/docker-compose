@@ -1,0 +1,5 @@
+services:
+  dusk:
+    image: 'selenium/standalone-chrome'
+    volumes:
+      - '/dev/shm:/dev/shm'

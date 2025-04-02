@@ -1,5 +1,12 @@
 services:
   dusk:
-    image: 'selenium/standalone-chrome'
+    image: 'selenium/standalone-chrome-debug'
+    container_name: dusk
+    network_mode: host
     volumes:
       - '/dev/shm:/dev/shm'
+    ports:
+      - 7900:7900
+      - 4444:4444
+      - 5900:5900
+    restart: unless-stopped

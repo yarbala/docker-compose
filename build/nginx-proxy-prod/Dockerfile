@@ -8,7 +8,12 @@ RUN { \
 RUN { \
       echo 'proxy_connect_timeout 1m;'; \
       echo 'proxy_read_timeout 1m;'; \
-    } > /etc/nginx/conf.d/extended_timeout.conf
+    } > /etc/nginx/conf.d/extended_timeout.conf \
+RUN { \
+    echo 'proxy_buffer_size 32k;'; \
+    echo 'proxy_buffers 8 32k;'; \
+    echo 'proxy_busy_buffers_size 64k;'; \
+  } > /etc/nginx/conf.d/proxy_buffers.conf
 
 RUN mkdir /etc/nginx/htpasswd
 

@@ -10,7 +10,7 @@ RUN { \
       echo 'proxy_read_timeout 1m;'; \
     } > /etc/nginx/conf.d/extended_timeout.conf
 RUN { \
-    echo 'proxy_buffer_size 16k;'; \
-    echo 'proxy_buffers 8 16k;'; \
-    echo 'proxy_busy_buffers_size 32k;'; \
-  } > /etc/nginx/conf.d/proxy_buffers.conf
+      echo 'proxy_buffer_size 128k;'; \
+      echo 'proxy_buffers 8 64k;'; \
+      echo 'proxy_busy_buffers_size 128k;'; \
+    } > /etc/nginx/conf.d/proxy_buffers.conf

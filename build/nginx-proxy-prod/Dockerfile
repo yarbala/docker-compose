@@ -2,13 +2,14 @@ FROM nginxproxy/nginx-proxy:1.5-alpine
 
 RUN { \
       echo 'server_tokens off;'; \
-      echo 'client_max_body_size 100m;'; \
+      echo 'client_max_body_size 700m;'; \
     } > /etc/nginx/conf.d/my_proxy.conf
 
 RUN { \
       echo 'proxy_connect_timeout 1m;'; \
-      echo 'proxy_read_timeout 1m;'; \
-    } > /etc/nginx/conf.d/extended_timeout.conf \
+      echo 'proxy_read_timeout 10m;'; \
+    } > /etc/nginx/conf.d/extended_timeout.conf
+
 RUN { \
     echo 'proxy_buffer_size 32k;'; \
     echo 'proxy_buffers 8 32k;'; \

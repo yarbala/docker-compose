@@ -93,3 +93,23 @@ location = /manifest.webmanifest {
     set $upstream_keepalive false;
 }
 ```
+
+## Letting in-droplet clients through (satisfy any)
+
+When a trusted client runs on the droplet itself — e.g. an AI assistant whose
+managed browser must see the real site — exempt it by source address instead
+of handing it the credentials. Hairpin traffic from containers reaches the
+proxy with a source inside the compose network subnet (`docker network
+inspect <network>` shows it). At the top of `<domain>_location`:
+
+```nginx
+satisfy any;
+allow 172.18.0.0/16;   # the external compose network subnet
+deny all;
+```
+
+`satisfy any` grants access when either the address rules or basic auth pass:
+in-droplet sources skip the password, external visitors still get the 401
+challenge. Trap: nested `auth_basic off` locations (API, manifest, favicons)
+inherit the `deny all` and would answer 403 externally — add an explicit
+`allow all` inside each of them.
